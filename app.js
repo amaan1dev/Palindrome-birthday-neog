@@ -1,6 +1,14 @@
-function reverseString(str){
-    return str.split('').reverse().join('')
+function reverseStr(str){
+    var listOfChars = str.split('');
+    var reverListOfChars = listOfChars.reverse();
+    var reversedStr = reverListOfChars.join('');
+    return reversedStr;
 }
 
-console.log(reverseString('hello'));    
 
+function isPalindrome(str){
+    var reverse = reverseStr(str);
+    return str === reverse;
+}
+
+console.log(isPalindrome("momo"))
