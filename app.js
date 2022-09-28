@@ -1,3 +1,8 @@
+var inputBday = document.querySelector("#input-birthdate");
+var resultText = document.querySelector("#result-text");
+var checkBtn = document.querySelector("#check-btn"); 
+
+
 function reverseStr(str){
     var listOfChars = str.split('');
     var reverseListOfChars =  listOfChars.reverse();
@@ -152,7 +157,7 @@ function getPreviousDate(date){
 
 }
 
-function getNextPalindromDate(date){
+function getNextPalindromeDate(date){
 
     var ctr = 0;
     var nextDate = getNextDate(date);
@@ -186,16 +191,14 @@ function getPreviousPalindromeDate(date){
     return [ctr, previousDate];
 }
 
-var inputBday = document.querySelector("#input-bday");
-var resultText = document.querySelector("#result-text");
-var checkBtn = document.querySelector("#check-btn");
 
 
 function checkBtnClickHandler(e){
     var bdayStr = inputBday.value;
 
-    if(inputBday !== ''){
+    if(inputBday !== ""){
         var listOfDate = bdayStr.split("-");
+
         var date = {
             day: Number(listOfDate[2]),
             month: Number(listOfDate[1]),
@@ -204,11 +207,20 @@ function checkBtnClickHandler(e){
         
         var isPalindrome = checkPalindromeForAllDateFormats(date);
 
-        if(isPalindrome){
-            resultText.innerText = "Yay it is a Palindrome";
-        }
+        if (!isPalindrome) {
+            const [ctr1, nextDate] = getNextPalindromeDate(date);
+            const [ctr2, previousDate] = getPreviousPalindromeDate(date);
+      
+            if (ctr1 > ctr2) {
+              resultText.innerText = `The nearest palindrome date was on ${previousDate.day}-${previousDate.month}-${previousDate.year}, you missed by ${ctr2} days!😔`;
+            } else {
+              resultText.innerText = `The nearest palindrome date will be on ${nextDate.day}-${nextDate.month}-${nextDate.year}, you missed by ${ctr1} days! 😔`;
+            }
+          } else {
+            resultText.innerText = "Yay! Your birthday is palindrome!🥳🥳";
+          }
         
     }
 }
 
-checkBtn.addEventListener("click", checkBtnClickHandler)
+checkBtn.addEventListener('click', checkBtnClickHandler)
