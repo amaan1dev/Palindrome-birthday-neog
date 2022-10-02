@@ -1,6 +1,6 @@
-var inputBday = document.querySelector("#input-birthdate");
-var resultText = document.querySelector("#result-text");
-var checkBtn = document.querySelector("#check-btn"); 
+var inputBday = document.querySelector("#birth-date");
+var resultText = document.querySelector("#output-para");
+var checkBtn = document.querySelector("#check-button"); 
 
 
 function reverseStr(str){
